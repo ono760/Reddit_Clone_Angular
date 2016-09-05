@@ -1,61 +1,51 @@
-var app = angular.module('reddit', ['ngAnimate']);
+var app = angular.module('redditApp', ['ngAnimate']);
 
-app.controller('RedditController', function($scope) {
+app.controller('AppController', function($scope) {
 
     $scope.newComment = {};
     $scope.newPost = {};
     $scope.view = {};
-    $scope.view.searchText = "";
+    $scope.view.searchPosts = "";
     $scope.view.newPostVisible = false;
-    $scope.view.sortableFields = ['votes', 'date', 'title'];
-    $scope.view.currentSort = $scope.view.sortableFields[0];
+    $scope.view.sortOptions = ['votes', 'date', 'title'];
+    $scope.view.sortOption = $scope.view.sortOptions[0];
     $scope.view.orderVal = '-votes';
     $scope.view.posts = [{
-        title: "Monkey costumes are totally in this season",
-        author: "Linus Lane",
-        image: "https://scontent-lga3-1.cdninstagram.com/hphotos-xft1/t51.2885-15/e35/11809944_1676694042554573_495250395_n.jpg",
-        description: "Hey, hey, we're the Monkees, and people say we monkey around. But we're too busy singing to put anybody down. We're just tryin' to be friendly, come and watch us sing and play. We're the young gneration, and we've got something to say.",
+        title: "Dogs are cool!",
+        author: "Ono Ec",
+        image: "http://67.media.tumblr.com/96b44e40fa26e4223f330c6715960ee0/tumblr_moru6ilp381rnleioo1_500.jpg",
+        description: "Who can deny that this dog ain't cool? Dog is about to watch a 3D movie or something. Anyways, cool picture of this cool dog.",
         date: moment().subtract(2, 'days').subtract(3, 'hours').calendar(),
-        votes: 10,
+        votes: 6,
         comments: [{
-            author: "Matt",
-            text: "Cool costume."
+            author: "Luis",
+            text: "Cool glasses dawg!."
         }],
         commentsVisible: false,
         newCommentVisible: false
     }, {
-        title: "2016 Baseball",
-        author: "Andrew Baggarly",
-        image: "https://pbs.twimg.com/profile_images/632061069205225476/-3wXELim_400x400.jpg",
-        description: "The Giants win it all in even years. Next year is an even year. Therefore, the Giants will win it all next year.",
+        title: "Cats are cooler than dogs...",
+        author: "Erica Lopez",
+        image: "http://orig08.deviantart.net/d157/f/2015/225/c/9/cool_cat__nature_by_tovalhalla-d95iyze.jpg",
+        description: "Although I can't deny that dogs are cool, everybody knows that cats are cooler than dogs!",
         date: moment().subtract(2, 'hours').calendar(),
-        votes: 2,
+        votes: 3,
         comments: [{
-            author: "Matt",
-            text: "Sound reasoning!"
+            author: "Alex N",
+            text: "You are right!"
         }, {
-            author: "Billy Bean",
-            text: "Oakland rulez"
+            author: "Kevin Smith",
+            text: "They are both cool I guess"
         }],
         commentsVisible: false,
         newCommentVisible: false
     }, {
-        title: "New Years",
-        author: "Ryan Seacrest",
-        image: "https://tribzap2it.files.wordpress.com/2012/12/ryan-seacrest-new-years-rockin-eve-400.jpg",
-        description: "Come hang out with me on New Year's Eve!",
+        title: "Himalayas",
+        author: "Scott Hawk",
+        image: "http://www.ox.ac.uk/sites/files/oxford/styles/ow_medium_feature/public/field/field_image_main/himalayas_0.jpg?itok=KlFepQPI",
+        description: "A breath-taking view of one of the most amazing mountains in the world. I took this picture with some friends.",
         date: moment("20151010", "YYYYMMDD").calendar(),
-        votes: -3,
-        comments: [],
-        commentsVisible: false,
-        newCommentVisible: false
-    }, {
-        title: "XKCD",
-        author: "Randall Munroe",
-        image: "http://www.userlogos.org/files/logos/Mafia_Penguin/xkcdLogo.png",
-        description: "rofl. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum excepturi ad totam autem dignissimos molestiae a consequatur cupiditate, eum enim. Magni expedita, nam in eligendi sed totam fugiat numquam consequatur.",
-        date: moment().subtract(14, 'days').calendar(),
-        votes: 2,
+        votes: -1,
         comments: [],
         commentsVisible: false,
         newCommentVisible: false
@@ -114,12 +104,12 @@ app.controller('RedditController', function($scope) {
         $scope.postForm.$setUntouched();
     };
 
-    $scope.checkForError = function(field) {
-        return field.$invalid && field.$touched;
+    $scope.checkForError = function(option) {
+        return option.$invalid && option.$touched;
     };
 
     $scope.setOrderVal = function(newVal) {
-        $scope.view.currentSort = newVal;
+        $scope.view.sortOption = newVal;
         $scope.view.orderVal = newVal === "title" ? newVal : '-' + newVal;
     };
 
