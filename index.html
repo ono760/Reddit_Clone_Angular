@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="redditApp">
 
 <head>
     <meta charset="utf-8">
-    <title>
-    </title>
+    <title>Reddit in Angular</title>
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -15,14 +14,40 @@
     <!-- Normalize.css -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.css"></script>
     <!-- My CSS -->
-    <link rel="stylesheet" href="style.css"
+    <link rel="stylesheet" href="./style.css">
     <!-- Angular -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
     <!-- My Script file -->
+	<script type="text/javascript" src="./app.js"></script>
 </head>
 
-<body>
-<h1>test</h1>
+<body ng-controller="AppController">
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="javascript:void(0)">Reddit in Angular</a>
+			<ul class="navbar-form">
+				<li>
+					<a href="javascript:void(0)" ng-click="toggleNewPostVisibility()"><span class="glyphicon glyphicon-plus"></span>Submit Post!</a>
+				</li>
+				<li class="navbar-form">
+					<div class="form-inline">
+						<input type="text" placeholder="search posts" class="form-control" ng-model="view.searchText">
+					</div>
+				</li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"><span>Sort by {{ view.currentSort }}</span> <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+                        <li ng-repeat="field in view.sortableFields"><a href="#" ng-click="setOrderVal(field)">Sort by {{ field }}</a></li>
+                    </ul>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+	
+
 </body>
 
 </html>
+
+
